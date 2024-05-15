@@ -25,7 +25,7 @@ export default function Home() {
   useEffect(() => {
     fetchEntries();
     
-  }, [entries]);
+  }, []);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
