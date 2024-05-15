@@ -24,8 +24,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchEntries();
-   
-  }, []);
+    
+  }, [entries]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -39,7 +39,7 @@ export default function Home() {
   //FEATCHING ENTRIES API CALL
   const fetchEntries = async () => {
     try {
-      const res = await fetch("api/getEntries", { method: "GET" });
+      const res = await fetch("api/getEntries", { method: "GET", cache: 'no-store'  });
       const data = await res.json();
       setEntries(data);
     } catch (error) {
@@ -52,6 +52,7 @@ export default function Home() {
     try {
       const response = await fetch("/api/addEntry", {
         method: "POST",
+        cache: 'no-store' ,
         body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +70,7 @@ export default function Home() {
   //DELETE ENTRY API CALL
   const handleDelete = async (id) => {
     try {
-      await fetch(`/api/deleteEntries/${id.toString()}`, { method: "DELETE" });
+      await fetch(`/api/deleteEntries/${id.toString()}`, { method: "DELETE",cache: 'no-store'  });
       fetchEntries();
     } catch (error) {
       console.log(error);
@@ -93,6 +94,7 @@ export default function Home() {
     try {
       const response = await fetch(`/api/updateEntry/${formData.id}`, {
         method: "PUT",
+        cache: 'no-store' ,
         body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json",
@@ -122,8 +124,10 @@ export default function Home() {
     try {
       const response = await fetch("/api/sendEmail", {
         method: "POST",
+        cache: 'no-store' ,
         headers: {
           "Content-Type": "application/json",
+          
         },
         body: JSON.stringify({ selectedRows: selectedEntries }),
       });
