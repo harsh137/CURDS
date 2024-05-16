@@ -25,7 +25,7 @@ tableContent += '</tbody></table>';
 
 let mailOptions = {
     from: process.env.EMAIL_USER,
-    to: 'info@redpositive',
+    to: 'info@redpositive.in',
     subject: 'Selected Rows Data',
     html: tableContent,
 
