@@ -39,14 +39,23 @@ export default function Home() {
   //FEATCHING ENTRIES API CALL
   const fetchEntries = async () => {
     try {
-      const res = await fetch("/api/getEntries", { method: "GET", cache: 'no-store' });
+      const res = await fetch('/api/getEntries', { 
+        method: 'POST',
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'Surrogate-Control': 'no-store'
+        },
+         cache: 'no-store'
+       });
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       setEntries(data);
     } catch (error) {
       console.log('Fetch entries failed: ', error);
     }
-  };
+  }
 
   //ADD ENTRY API CALL
   const handleSave = async (formData) => {

@@ -1,10 +1,9 @@
-
 import {connectToDB} from '@/utils/db';
 import Entry from '@/models/Entry';
 
 
-  export const GET = async (res) => {
-    res.setHeader('Cache-Control', 'no-store, max-age=0, must-revalidate');
+  export const POST = async (req,res) => {
+    // res.setHeader('Cache-Control', 'no-store, max-age=0, must-revalidate');
     
 
     try {
@@ -19,3 +18,4 @@ import Entry from '@/models/Entry';
         return new Response(error, { status: 500 });
     }
 }
+
