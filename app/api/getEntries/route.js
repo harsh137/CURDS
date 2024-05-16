@@ -3,7 +3,8 @@ import {connectToDB} from '@/utils/db';
 import Entry from '@/models/Entry';
 
 
-  export const GET = async () => {
+  export const GET = async (res) => {
+    res.setHeader('Cache-Control', 'no-store, max-age=0, must-revalidate');
     
 
     try {
